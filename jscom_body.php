@@ -62,6 +62,39 @@ $wgExtensionCredits['other'][] = array(
 
 /* Setup */
 
+// Register special pages
+// See also http://www.mediawiki.org/wiki/Manual:Special_pages
+$wgSpecialPages['JSComm'] = 'SpecialJSComm';
+
+// Register modules
+// See also http://www.mediawiki.org/wiki/Manual:$wgResourceModules
+// ResourceLoader modules are the de facto standard way to easily
+// load JavaScript and CSS files to the client.
+
+//***************** Adding .sh, .shtml, internationalisation :how??
+
+$wgResourceModules['ext.Example.welcome'] = array(
+	'scripts' => array(
+		'JSCommunicator/Arbiter.js', 'JSCommunicator/config.js', 'JSCommunicator/event-demo.js', 'JSCommunicator/i18n.js', 'JSCommunicator/init.js', 'JSCommunicator/jquery.i18n.properties', 'JSCommunicator/jquery.js', 'JSCommunicator/jquery-ui.js', 'JSCommunicator/JSComm', 'JSCommunicator/JSCommManager', 'JSCommunicator/JSCommUI', 'JSCommunicator/jssip.js', 'JSCommunicator/jssip-helper.js', 'JSCommunicator/parseuri.js', 'JSCommunicator/webrtc-check.js' ),
+	'styles' => array(
+		'JSCommunicator/font-awesome.min.css', 'JSCommunicator/jquery-ui.css', 'JSCommunicator/skin.css', 'JSCommunicator/style.css', 'JSCommunicator/style-debrtc.css', 'JSCommunicator/style-event-demo.css','JSCommunicator/style-horizontal.css'
+	),
+	'messages' => array(
+		'example-welcome-title-loggedout',
+		'example-welcome-title-user',
+		'example-welcome-color-label',
+		'example-welcome-color-value',
+	),
+	'dependencies' => array(
+		'mediawiki.util',
+		'mediawiki.user',
+		'mediawiki.Title',
+	),
+
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'examples/' . $dirbasename,
+);
+
 // Initialize an easy to use shortcut:
 $dir = dirname( __FILE__ );
 $dirbasename = basename( $dir );
@@ -101,7 +134,9 @@ class JSCom extends SpecialPage {
 
 	public function Web_Socket() {
 
-		// public Websocket_conn, registerrn, deregisterrn; 
+		public Websocket_conn, registerrn, deregisterrn; 
+
+		//Accepting input for radio buttons
 
 	}
 
@@ -110,21 +145,20 @@ class JSCom extends SpecialPage {
 		//error is displayed accordingly
 	}
 
-
-
-
 }
 
 class NetworkControl {
 
     protected $con_name, $sip_uri, $sip_pass;
 
-    // public $destination, $dialled number, $a_or_v **** - connect to videocall
+    public $destination, $dialled number, $a_or_v **** - connect to videocall
 
     // Build form to input values. Use xml and html tags
 
     function call_state() {
 
+	
+    protected cs_switch;
 	/* protected switching variable
 	auto switch between:
 		Call Dialling fn
@@ -135,6 +169,7 @@ class NetworkControl {
 
 	function Session_Control() {
 
+	protected sc_switch;
 	/* public switching variable
 	manual switch between
 
@@ -149,7 +184,7 @@ class NetworkControl {
 
 	function video_call() {
 
-		//pubic remote_v, self_v;
+		pubic remote_v, self_v;
 
 	}
 
