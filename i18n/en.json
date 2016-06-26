@@ -6,5 +6,12 @@
 	},
 
 	"var-name1" : "English Transcript1",
-	"var-name2" : "English Transcript2"
+	"var-name2" : "English Transcript2",
+	"destination-details": "Destination Details",
+    "enter-d-name": "Enter Destination Name",
+    "enter-sip-uri": "Enter SIP URI",
+    "enter-d-password": "Enter Password",
+    "enter-contact": "Enter Contact ",
+    "enter-phone-number": "Enter Phone Number "
+
 }

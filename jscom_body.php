@@ -107,7 +107,9 @@ class JSCom extends SpecialPage {
 	/**
 	 * @var AllMessagesTablePager
 	 */
+protected $d_name, $sip_uri, $d_pass;
 
+public $destination, $dial_no, $a_or_v;
 	/**
 	 * Constructor
 	 */
@@ -126,15 +128,14 @@ class JSCom extends SpecialPage {
 		$this->addHelpLink( 'Help:System message' );
 
 
-		this->table = new NetworkControl(
-			$this,
-			array(),
+		$this->getOutput()->addHTML( $this->Destination() );
+		$this->getOutput()->addHTML( $this->Caller() );
 		);
 	}
 
 	public function Web_Socket() {
 
-		public Websocket_conn, registerrn, deregisterrn; 
+		public $Websocket_conn, $registerrn, $deregisterrn; 
 
 		//Accepting input for radio buttons
 
@@ -145,20 +146,10 @@ class JSCom extends SpecialPage {
 		//error is displayed accordingly
 	}
 
-}
-
-class NetworkControl {
-
-    protected $con_name, $sip_uri, $sip_pass;
-
-    public $destination, $dialled number, $a_or_v **** - connect to videocall
-
-    // Build form to input values. Use xml and html tags
-
-    function call_state() {
+	    function call_state() {
 
 	
-    protected cs_switch;
+    protected $cs_switch;
 	/* protected switching variable
 	auto switch between:
 		Call Dialling fn
@@ -169,7 +160,7 @@ class NetworkControl {
 
 	function Session_Control() {
 
-	protected sc_switch;
+	protected $sc_switch;
 	/* public switching variable
 	manual switch between
 
@@ -184,21 +175,90 @@ class NetworkControl {
 
 	function video_call() {
 
-		pubic remote_v, self_v;
+		public $remote_v, $self_v;
 
 	}
-
-}
-
-class  Chat {
-
-	protected $con_name, $sip_uri, $sip_pass;
-	// public $destination
 
 	function chat_error() {
 
 		//No destination specified
 	}
 
+	private function Destination() {
+		$form = Html::openElement( 'fieldset' ) . "\n";
+		$form .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'destination-details' )->text()
+		) . "\n";
+		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
+		$form .= '<p>' . Xml::inputLabel(
+			$this->msg( 'enter-name' )->text(),
+			'd_name',
+			'd_name',
+			30,
+			$this->d_name,
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
+		);
+
+		$d_name = $form;
+
+		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
+		$form .= '<p>' . Xml::inputLabel(
+			$this->msg( 'enter-sip-uri' )->text(),
+			'sip_uri',
+			'sip_uri',
+			40,
+			$this->sip_uri,
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
+		);
+
+		$sip_uri = $form;
+
+		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
+		$form .= '<p>' . Xml::inputLabel(
+			$this->msg( 'enter-password' )->text(),
+			'd_pass',
+			'd_pass',
+			20,
+			$this->d_pass,
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
+		);
+
+		$d_pass = $form;
+
+		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
+		$form .= '<p>' . Xml::inputLabel(
+			$this->msg( 'enter-contact' )->text(),
+			'd_caller',
+			'd_caller',
+			30,
+			$this->d_name,
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
+		);
+
+		$d_caller = $form;
+
+		/*$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'booksources-search' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		) . "</p>\n";*/
+
+		$form .= Html::closeElement( 'form' ) . "\n";
+		$form .= Html::closeElement( 'fieldset' ) . "\n";
+
+		//return $form;
+	}
+
+	private function caller() {
+
+
+	}
+
 }
+
 
