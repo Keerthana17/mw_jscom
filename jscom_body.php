@@ -135,10 +135,9 @@ public $destination, $dial_no, $a_or_v;
 
 	public function Web_Socket() {
 
-		public $Websocket_conn, $registerrn, $deregisterrn; 
+		//public $Websocket_conn, $registerrn, $deregisterrn; 
 
-		//Accepting input for radio buttons
-
+		//Transfer data 2&fro jscom files
 	}
 
 	public function errors() {
@@ -243,10 +242,10 @@ public $destination, $dial_no, $a_or_v;
 
 		$d_caller = $form;
 
-		/*$form .= '&#160;' . Html::submitButton(
-			$this->msg( 'booksources-search' )->text(),
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'call-details' )->text(),
 			array(), array( 'mw-ui-progressive' )
-		) . "</p>\n";*/
+		) . "</p>\n";
 
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";

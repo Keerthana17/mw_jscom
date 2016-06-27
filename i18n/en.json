@@ -24,6 +24,7 @@
     "nine":"9",
     "asterix":"*",
     "zero":"0",
-    "hash":"#"
+    "hash":"#",
+    "call-details":"Call"
 
 }
