@@ -129,7 +129,7 @@ public $destination, $dial_no, $a_or_v;
 
 
 		$this->getOutput()->addHTML( $this->Destination() );
-		$this->getOutput()->addHTML( $this->Caller() );
+		
 		);
 	}
 
@@ -237,7 +237,7 @@ public $destination, $dial_no, $a_or_v;
 			'd_caller',
 			'd_caller',
 			30,
-			$this->d_name,
+			$this->getOutput()->addHTML( $this->Caller() );,
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
