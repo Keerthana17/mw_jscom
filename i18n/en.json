@@ -8,10 +8,10 @@
 	"var-name1" : "English Transcript1",
 	"var-name2" : "English Transcript2",
 	"destination-details": "Destination Details",
-    "enter-d-name": "Enter Destination Name",
-    "enter-sip-uri": "Enter SIP URI",
-    "enter-d-password": "Enter Password",
-    "enter-contact": "Enter Contact ",
+    "enter-d-name": "Enter Destination Name (Optional) ",
+    "enter-sip-uri": "Enter SIP URI          ",
+    "enter-d-password": "Enter Password         ",
+    "enter-contact": "Enter Contact          ",
     "enter-phone-number": "Enter Phone Number ",
     "one":"1",
     "two":"2",
@@ -25,6 +25,15 @@
     "asterix":"*",
     "zero":"0",
     "hash":"#",
-    "call-details":"Call"
+    "call-audio":"Audio Call",
+    "call-video":"Video Call",
+    "sip-registration":"SIP Registration",
+    "register-sip":"Yes",
+    "unregister-sip":"No",
+    "video-call-options":"Video Call Options",
+    "enable-remote-view":"Enable Remote View",
+    "disable-remote-view":"Disable Remote View",
+    "enable-self-view":"Enable Self View",
+    "disable-self-view":"Disable Self View"
 
 }

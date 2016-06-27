@@ -129,7 +129,9 @@ public $destination, $dial_no, $a_or_v;
 
 
 		$this->getOutput()->addHTML( $this->Destination() );
-		
+    	$this->getOutput()->addHTML( $this->Registration() );
+    	//If videoCall then,
+    	$this->getOutput()->addHTML( $this->VideoCallOptions() );
 		);
 	}
 
@@ -172,18 +174,24 @@ public $destination, $dial_no, $a_or_v;
 		Active */
 	}
 
-	function video_call() {
-
-		public $remote_v, $self_v;
-
-	}
-
 	function chat_error() {
 
-		//No destination specified
+		//No destination specified error
+		//How to define chat?
+	}
+
+	function video_call() {
+
+		$this->getOutput()->addHTML( $this->VideoRemoteView() );
+
+		$this->getOutput()->addHTML( $this->VideoSelfView() );
+
 	}
 
 	private function Destination() {
+
+			global $d_name, $d_pass, $sip_uri;
+
 		$form = Html::openElement( 'fieldset' ) . "\n";
 		$form .= Html::element(
 			'legend',
@@ -193,15 +201,13 @@ public $destination, $dial_no, $a_or_v;
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'enter-name' )->text(),
+			$this->msg( 'enter-d-name' )->text(),
 			'd_name',
 			'd_name',
 			30,
 			$this->d_name,
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
-
-		$d_name = $form;
 
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
@@ -214,12 +220,10 @@ public $destination, $dial_no, $a_or_v;
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
-		$sip_uri = $form;
-
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'enter-password' )->text(),
+			$this->msg( 'enter-d-password' )->text(),
 			'd_pass',
 			'd_pass',
 			20,
@@ -236,21 +240,79 @@ public $destination, $dial_no, $a_or_v;
 			'd_caller',
 			'd_caller',
 			30,
-			$this->getOutput()->addHTML( $this->Caller() );,
+			$this->d_name,
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
 		$d_caller = $form;
 
-		$form .= '&#160;' . Html::submitButton(
-			$this->msg( 'call-details' )->text(),
-			array(), array( 'mw-ui-progressive' )
-		) . "</p>\n";
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'call-audio' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'call-video' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>" .
 
-		$form .= Html::closeElement( 'form' ) . "\n";
-		$form .= Html::closeElement( 'fieldset' ) . "\n";
+			//Xml::closeElement( 'form' ) .
+			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
+			Html::closeElement( 'form' ) .
+			Html::closeElement( 'fieldset' );
+			
 
-		//return $form;
+		//eturn $out;
+
+		return $form;
+
+		
+	}
+
+	private function Registration() {
+
+		$form = Html::openElement( 'fieldset' ) . "\n";
+		$form .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'sip-registration' )->text()
+		) . "\n";
+
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'register-sip' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'unregister-sip' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>" .
+
+			//Xml::closeElement( 'form' ) .
+			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
+			//Html::closeElement( 'form' ) .
+			Html::closeElement( 'fieldset' );
+
+
+		return $form;
 	}
 
 	private function dialer() {
@@ -317,6 +379,61 @@ public $destination, $dial_no, $a_or_v;
 
 		$form .= Html::closeElement( 'form' ) . "\n";
 		
+
+	}
+
+	private function VideoRemoteView() {
+
+		$form = Html::openElement( 'fieldset' ) . "\n";
+		$form .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'video-call-options' )->text()
+		) . "\n";
+
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'enable-remote-view' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'disable-remote-view' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>";
+			return $form;
+	}
+
+	private function VideoSelfView() {
+
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'enable-self-view' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'disable-self-view' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>";
+
+		return $form;
 
 	}
 
