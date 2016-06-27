@@ -254,8 +254,70 @@ public $destination, $dial_no, $a_or_v;
 		//return $form;
 	}
 
-	private function caller() {
+	private function dialer() {
 
+		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'one' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'two' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		) 
+
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'three' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		) 
+
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'four' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'five' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'six' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'seven' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'eight' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'nine' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'asterix' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'zero' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+		
+		$form .= '&#160;' . Html::submitButton(
+			$this->msg( 'hash' )->text(),
+			array(), array( 'mw-ui-progressive' )
+		)
+
+		$form .= Html::closeElement( 'form' ) . "\n";
+		
 
 	}
 
