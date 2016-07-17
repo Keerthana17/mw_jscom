@@ -1,3 +1,4 @@
+
 <?php
 /**
  * HelloWorld SpecialPage for Example extension
@@ -27,19 +28,19 @@ class SpecialHelloWorld extends SpecialPage {
 	public function execute( $sub ) {
 		global $isbn, $d_name, $sip_uri, $d_pass;
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'example-helloworld' ) );
+		$out->setPageTitle( $this->msg( 'mw-caller' ) );
 
 		// Parses message from .i18n.php as wikitext and adds it to the
 		// page output.
-		$out->addWikiMsg( 'example-helloworld-intro' );
+		$out->addWikiMsg( 'mw-caller-intro' );
 		$out = $this->getOutput();
     	//$out->addWikimsg( 'example-hello_world' );
     	//$out->addWikimsg( 'example-hello_world', $wgRequest->getText( 'name' ));
     	//$isbn = $this->getRequest()->getText( 'isbn' ) ;
     	$this->getOutput()->addHTML( $this->Destination() );
-    	$this->getOutput()->addHTML( $this->Registration() );
+    	//$this->getOutput()->addHTML( $this->Registration() );
     	//If videoCall then,
-    	$this->getOutput()->addHTML( $this->VideoCallOptions() );
+    	//$this->getOutput()->addHTML( $this->VideoCallOptions() );
 	}
 
 	protected function getGroupName() {
@@ -78,7 +79,7 @@ class SpecialHelloWorld extends SpecialPage {
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
-		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		/*$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
 			$this->msg( 'enter-d-password' )->text(),
@@ -102,7 +103,7 @@ class SpecialHelloWorld extends SpecialPage {
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
-		$d_caller = $form;
+		$d_caller = $form;*/
 
 		$form .=  Xml::openElement( 'form', array(
 				'method' => 'get',
@@ -136,7 +137,7 @@ class SpecialHelloWorld extends SpecialPage {
 		
 	}
 
-	private function Registration() {
+	/*private function Registration() {
 
 		$form = Html::openElement( 'fieldset' ) . "\n";
 		$form .= Html::element(
@@ -220,7 +221,7 @@ class SpecialHelloWorld extends SpecialPage {
 			$this->msg( 'Video-Call-Options' )->text()
 		) . "\n";*/
 
-		$form .=  Xml::openElement( 'form', array(
+		/*$form .=  Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $this->getConfig()->get( 'Script' ),
 				'id' => 'mw-allmessages-form'
@@ -247,5 +248,5 @@ class SpecialHelloWorld extends SpecialPage {
 
 		return $form;
 
-	}
+	}*/
 }

@@ -7,9 +7,9 @@
     "example-welcome-title-loggedout": "Hi there!",
     "example-welcome-color-label": "Today's color:",
     "example-welcome-color-value": "$1",
-    "example-helloworld": "Media Wiki Caller",
-    "example-hello_world" : " GIve input",
-    "example-helloworld-intro": "Now, you can call with Media Wiki!",
+    "example-helloworld": "Media Wiki Configuration/Setup",
+    "example-hello_world" : " Give input",
+    "example-helloworld-intro": "Setup calling configuration",
     "apihelp-query+example-description": "Get information about foo.",
     "apihelp-query+example-param-key": "Reduce the result to only one of the foo properties.",
     "apihelp-query+example-example-1": "Get all the information about foo.",
@@ -41,5 +41,7 @@
     "enable-remote-view":"Enable Remote View",
     "disable-remote-view":"Disable Remote View",
     "enable-self-view":"Enable Self View",
-    "disable-self-view":"Disable Self View"
+    "disable-self-view":"Disable Self View",
+    "mw-caller":"Media Wiki Caller",
+    "mw-caller-intro":" Enter your destination to call with Media Wiki"
 }

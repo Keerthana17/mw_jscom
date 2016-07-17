@@ -74,7 +74,8 @@ $dirbasename = basename( $dir );
 // registering mecanism to append to the internal autoloader. Simply use
 // $wgAutoLoadClasses as below:
 $wgAutoloadClasses['ExampleHooks'] = $dir . '/Example.hooks.php';
-$wgAutoloadClasses['SpecialHelloWorld'] = $dir . '/specials/SpecialHelloWorld.php';
+$wgAutoloadClasses['SpecialHelloWorld'] = $dir . '/specials/MWConfiger.php';
+//$wgAutoloadClasses['']
 $wgAutoloadClasses['ApiQueryExample'] = $dir . '/api/ApiQueryExample.php';
 
 $wgMessagesDirs['Example'] = __DIR__ . '/i18n';
