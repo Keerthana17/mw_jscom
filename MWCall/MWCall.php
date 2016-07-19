@@ -72,7 +72,8 @@ $dirbasename = basename( $dir );
 // registering mecanism to append to the internal autoloader. Simply use
 // $wgAutoLoadClasses as below:
 $wgAutoloadClasses['ExampleHooks'] = $dir . '/Example.hooks.php';
-$wgAutoloadClasses['SpecialMWCaller'] = $dir . '/specials/MWConfiger.php';
+$wgAutoloadClasses['SpecialMWConfiger'] = $dir . '/specials/MWConfiger.php';
+$wgAutoloadClasses['SpecialMWCaller'] = $dir . '/specials/MWCaller.php';
 //$wgAutoloadClasses['']
 $wgAutoloadClasses['ApiQueryExample'] = $dir . '/api/ApiQueryExample.php';
 
@@ -93,7 +94,8 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'ExampleHooks::onLoadExtensionSchemaU
 
 // Register special pages
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages
-$wgSpecialPages['MWConfig'] = 'SpecialMWCaller';
+$wgSpecialPages['MWConfig'] = 'SpecialMWConfiger';
+$wgSpecialPages['MWCall'] = 'SpecialMWCaller';
 
 // Register modules
 // See also http://www.mediawiki.org/wiki/Manual:$wgResourceModules

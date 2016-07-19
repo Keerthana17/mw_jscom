@@ -7,7 +7,7 @@
  * @ingroup Extensions
  */
 
-class SpecialMWCaller extends SpecialPage {
+class SpecialMWConfiger extends SpecialPage {
 
 
 	/**
@@ -28,11 +28,11 @@ class SpecialMWCaller extends SpecialPage {
 	public function execute( $sub ) {
 		global $isbn, $d_name, $sip_uri, $d_pass;
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'example-helloworld' ) );
+		$out->setPageTitle( $this->msg( 'mwconfiger' ) );
 
 		// Parses message from .i18n.php as wikitext and adds it to the
 		// page output.
-		$out->addWikiMsg( 'example-helloworld-intro' );
+		$out->addWikiMsg( 'mwconfiger-intro' );
 		$out = $this->getOutput();
     	//$out->addWikimsg( 'example-hello_world' );
     	//$out->addWikimsg( 'example-hello_world', $wgRequest->getText( 'name' ));
