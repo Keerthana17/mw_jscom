@@ -1,7 +1,7 @@
 
 <?php
 /**
- * HelloWorld SpecialPage for Example extension
+ * Main Page for Media Wiki Caller
  *
  * @file
  * @ingroup Extensions
@@ -60,7 +60,7 @@ class SpecialHelloWorld extends SpecialPage {
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'enter-d-name' )->text(),
+			$this->msg( 'enter-contact' )->text(),
 			'd_name',
 			'd_name',
 			30,
@@ -71,7 +71,7 @@ class SpecialHelloWorld extends SpecialPage {
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'enter-sip-uri' )->text(),
+			$this->msg( 'enter-d-name' )->text(),
 			'sip_uri',
 			'sip_uri',
 			40,
@@ -126,6 +126,13 @@ class SpecialHelloWorld extends SpecialPage {
 
 			//Xml::closeElement( 'form' ) .
 			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
+			Xml::element( 'input',
+				array(
+					'type' => 'submit',
+					'value' => $this->msg( 'citethispage-change-submit' )->escaped()
+				),
+				''
+			) .
 			Html::closeElement( 'form' ) .
 			Html::closeElement( 'fieldset' );
 			

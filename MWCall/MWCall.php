@@ -1,9 +1,8 @@
 <?php
 /**
- * Example extension - based on the stripped-down extensions/BoilerPlate
+ * Media Wiki Caller extension - based on the stripped-down extensions/BoilerPlate
  *
- * For more info see mediawiki.org/wiki/Extension:Example
- *
+ * For more info see mediawiki.org/wiki/Extension:MWCall
  * You should add a brief comment explaining what the file contains and
  * what it is for. MediaWiki core uses the doxygen documentation syntax,
  * you're recommended to use those tags to complement your comment.
@@ -21,8 +20,8 @@
  *
  * The author would let everyone know who wrote the code, if there is more
  * than one author, add multiple author annotations:
- * @author Jane Doe
- * @author George Foo
+ * @author KeerthanaK
+ * //MAJOR CREDITS TO JSCommunicator : @Daniel Pocock and @Juliana Louback
  *
  * To mention the file version in the documentation:
  * @version 1.0
@@ -41,26 +40,25 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 
 	// Name of your Extension:
-	'name' => 'Example',
+	'name' => 'MWCall',
 
 	// Sometime other patches contributors and minor authors are not worth
 	// mentionning, you can use the special case '...' to output a localised
 	// message 'and others...'.
 	'author' => array(
-		'Jane Doe',
-		'George Foo',
-		'...'
+		'Keerthana K'
+	
 	),
 
 	'version'  => '0.1.0',
 
 	// The extension homepage. www.mediawiki.org will be happy to host
 	// your extension homepage.
-	'url' => 'https://www.mediawiki.org/wiki/Extension:Example',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:MWCall',
 
 
 	# Key name of the message containing the description.
-	'descriptionmsg' => 'example-desc',
+	'descriptionmsg' => 'mwcall-desc',
 );
 
 /* Setup */
@@ -74,7 +72,7 @@ $dirbasename = basename( $dir );
 // registering mecanism to append to the internal autoloader. Simply use
 // $wgAutoLoadClasses as below:
 $wgAutoloadClasses['ExampleHooks'] = $dir . '/Example.hooks.php';
-$wgAutoloadClasses['SpecialHelloWorld'] = $dir . '/specials/MWConfiger.php';
+$wgAutoloadClasses['SpecialMWCaller'] = $dir . '/specials/MWConfiger.php';
 //$wgAutoloadClasses['']
 $wgAutoloadClasses['ApiQueryExample'] = $dir . '/api/ApiQueryExample.php';
 
@@ -95,7 +93,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'ExampleHooks::onLoadExtensionSchemaU
 
 // Register special pages
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages
-$wgSpecialPages['HelloWorld'] = 'SpecialHelloWorld';
+$wgSpecialPages['HelloWorld'] = 'SpecialMWCaller';
 
 // Register modules
 // See also http://www.mediawiki.org/wiki/Manual:$wgResourceModules

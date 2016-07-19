@@ -2,7 +2,7 @@
     "@metadata": {
         "authors": []
     },
-    "example-desc": "This is an example extension using the BoilerPlate.",
+    "mwcall-desc": "This is an example extension using the BoilerPlate.",
     "example-welcome-title-user": "Howdy, $1!",
     "example-welcome-title-loggedout": "Hi there!",
     "example-welcome-color-label": "Today's color:",

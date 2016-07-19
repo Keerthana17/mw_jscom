@@ -1,13 +1,13 @@
 
 <?php
 /**
- * HelloWorld SpecialPage for Example extension
+ * Configuration page for Media Wiki Caller
  *
  * @file
  * @ingroup Extensions
  */
 
-class SpecialHelloWorld extends SpecialPage {
+class SpecialMWCaller extends SpecialPage {
 
 
 	/**
@@ -41,6 +41,7 @@ class SpecialHelloWorld extends SpecialPage {
     	$this->getOutput()->addHTML( $this->Registration() );
     	//If videoCall then,
     	$this->getOutput()->addHTML( $this->VideoCallOptions() );
+    	$this->getOutput()->addHTML( $this->Submission() );
 	}
 
 	protected function getGroupName() {
@@ -52,7 +53,7 @@ class SpecialHelloWorld extends SpecialPage {
 			global $d_name, $d_pass, $sip_uri;
 
 		$form = Html::openElement( 'fieldset' ) . "\n";
-		/*$form .= Html::element(
+		$form .= Html::element(
 			'legend',
 			array(),
 			$this->msg( 'destination-details' )->text()
@@ -66,7 +67,7 @@ class SpecialHelloWorld extends SpecialPage {
 			40,
 			$this->sip_uri,
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
-		);*/
+		);
 
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
@@ -81,7 +82,7 @@ class SpecialHelloWorld extends SpecialPage {
 
 		$d_pass = $form;
 
-		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
+		/*$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
 		//$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
 		$form .= '<p>' . Xml::inputLabel(
 			$this->msg( 'enter-contact' )->text(),
@@ -90,7 +91,7 @@ class SpecialHelloWorld extends SpecialPage {
 			30,
 			$this->d_name,
 			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
-		);
+		);*/
 
 		$d_caller = $form;
 
@@ -114,7 +115,14 @@ class SpecialHelloWorld extends SpecialPage {
 			"</td>\n</tr>" .
 
 			//Xml::closeElement( 'form' ) .
-			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .*/
+			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
+			Xml::element( 'input',
+				array(
+					'type' => 'submit',
+					'value' => $this->msg( 'citethispage-change-submit' )->escaped()
+				),
+				''
+			) .*/
 			Html::closeElement( 'form' ) .
 			Html::closeElement( 'fieldset' );
 			
@@ -163,15 +171,28 @@ class SpecialHelloWorld extends SpecialPage {
 		return $form;
 	}
 
-	private function VideoCallOptions() {
+	private function Submission() {
 
-		$this->getOutput()->addHTML( $this->VideoRemoteView() );
+		/*$form = Html::openElement( 'fieldset' ) . "\n";
+		$form .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'submit' )->text()
+		) . "\n";*/
+		$form .= Xml::element( 'input',
+				array(
+					'type' => 'submit',
+					'value' => $this->msg( 'submit' )->escaped()
+				),
+				''
+			) .
+			"</td>\n</tr>";
+		//Html::closeElement( 'fieldset' );
 
-		$this->getOutput()->addHTML( $this->VideoSelfView() );
-
+		return $form;
 	}
 
-	private function VideoRemoteView() {
+	private function VideoCallOptions() {
 
 		$form = Html::openElement( 'fieldset' ) . "\n";
 		$form .= Html::element(
@@ -179,6 +200,8 @@ class SpecialHelloWorld extends SpecialPage {
 			array(),
 			$this->msg( 'video-call-options' )->text()
 		) . "\n";
+
+		//$this->getOutput()->addHTML( $this->VideoRemoteView() );
 
 		$form .=  Xml::openElement( 'form', array(
 				'method' => 'get',
@@ -198,17 +221,69 @@ class SpecialHelloWorld extends SpecialPage {
 				( $this->filter === 'video' )
 			) .
 			"</td>\n</tr>";
-			return $form;
+
+		//$this->getOutput()->addHTML( $this->VideoSelfView() );
+
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'enable-self-view' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'disable-self-view' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>";
+
+		$form .= Html::closeElement( 'fieldset' );
+			
+		return $form;
+
 	}
 
-	private function VideoSelfView() {
+	/*private function VideoRemoteView() {
+
+		
+
+		$form .=  Xml::openElement( 'form', array(
+				'method' => 'get',
+				'action' => $this->getConfig()->get( 'Script' ),
+				'id' => 'mw-allmessages-form'
+			) ) . "</td>\n</tr>\n<p>" . 
+			Xml::radioLabel( $this->msg( 'enable-remote-view' )->text(),
+				'call-type',
+				'audio',
+				'mw-allmessages-form-filter-unmodified',
+				( $this->filter === 'audio' )
+			) .
+			Xml::radioLabel( $this->msg( 'disable-remote-view' )->text(),
+				'call-type',
+				'video',
+				'mw-allmessages-form-filter-all',
+				( $this->filter === 'video' )
+			) .
+			"</td>\n</tr>";
+
+			return $form;
+			
+	}*/
+
+	/*private function VideoSelfView() {
 
 		//$form = Html::openElement( 'fieldset' ) . "\n";
 		/*$form .= Html::element(
 			'legend',
 			array(),
 			$this->msg( 'Video-Call-Options' )->text()
-		) . "\n";*/
+		) . "\n";
 
 		$form .=  Xml::openElement( 'form', array(
 				'method' => 'get',
@@ -237,5 +312,7 @@ class SpecialHelloWorld extends SpecialPage {
 
 		return $form;
 
-	}
+	}*/
+
+	
 }
