@@ -17,7 +17,7 @@ class SpecialMWCaller extends SpecialPage {
 		// A special page should at least have a name.
 		// We do this by calling the parent class (the SpecialPage class)
 		// constructor method with the name as first and only parameter.
-		parent::__construct( 'HelloWorld' );
+		parent::__construct( 'MWConfig' );
 	}
 
 	/**
