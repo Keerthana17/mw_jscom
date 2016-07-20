@@ -1,9 +1,9 @@
 /**
  * Initialize Welcome
  *
- * This file is part of the 'ext.Example.welcome.init' module,
- * which is enqueued for loading from ExampleHooks::onBeforePageDisplay()
- * in Example.hooks.php.
+ * This file is part of the 'ext.Mwcall.welcome.init' module,
+ * which is enqueued for loading from MwcallHooks::onBeforePageDisplay()
+ * in Mwcall.hooks.php.
  */
 ( function ( mw, $ ) {
 

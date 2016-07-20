@@ -40,7 +40,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 
 	// Name of your Extension:
-	'name' => 'MWCall',
+	'name' => 'Media Wiki Call',
 
 	// Sometime other patches contributors and minor authors are not worth
 	// mentionning, you can use the special case '...' to output a localised
@@ -71,26 +71,26 @@ $dirbasename = basename( $dir );
 // MediaWiki need to know which PHP files contains your class. It has a
 // registering mecanism to append to the internal autoloader. Simply use
 // $wgAutoLoadClasses as below:
-$wgAutoloadClasses['ExampleHooks'] = $dir . '/Example.hooks.php';
+$wgAutoloadClasses['MWCallHooks'] = $dir . '/Mwcall.hooks.php';
 $wgAutoloadClasses['SpecialMWConfiger'] = $dir . '/specials/MWConfiger.php';
 $wgAutoloadClasses['SpecialMWCaller'] = $dir . '/specials/MWCaller.php';
 //$wgAutoloadClasses['']
-$wgAutoloadClasses['ApiQueryExample'] = $dir . '/api/ApiQueryExample.php';
+$wgAutoloadClasses['ApiQueryMwcall'] = $dir . '/api/ApiQueryMwcall.php';
 
-$wgMessagesDirs['Example'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['ExampleAlias'] = $dir . '/Example.i18n.alias.php';
-$wgExtensionMessagesFiles['ExampleMagic'] = $dir . '/Example.i18n.magic.php';
+$wgMessagesDirs['Mwcall'] = __DIR__ . '/i18n';
+//$wgExtensionMessagesFiles['ExampleAlias'] = $dir . '/Example.i18n.alias.php';
+//$wgExtensionMessagesFiles['ExampleMagic'] = $dir . '/Example.i18n.magic.php';
 
-$wgAPIListModules['example'] = 'ApiQueryExample';
+//$wgAPIListModules['example'] = 'ApiQueryExample';
 
 // Register hooks
 // See also http://www.mediawiki.org/wiki/Manual:Hooks
-$wgHooks['BeforePageDisplay'][] = 'ExampleHooks::onBeforePageDisplay';
-$wgHooks['ResourceLoaderGetConfigVars'][] = 'ExampleHooks::onResourceLoaderGetConfigVars';
-$wgHooks['ParserFirstCallInit'][] = 'ExampleHooks::onParserFirstCallInit';
-$wgHooks['MagicWordwgVariableIDs'][] = 'ExampleHooks::onRegisterMagicWords';
-$wgHooks['ParserGetVariableValueSwitch'][] = 'ExampleHooks::onParserGetVariableValueSwitch';
-$wgHooks['LoadExtensionSchemaUpdates'][] = 'ExampleHooks::onLoadExtensionSchemaUpdates';
+$wgHooks['BeforePageDisplay'][] = 'MWCallHooks::onBeforePageDisplay';
+$wgHooks['ResourceLoaderGetConfigVars'][] = 'MWCallHooks::onResourceLoaderGetConfigVars';
+$wgHooks['ParserFirstCallInit'][] = 'MWCallHooks::onParserFirstCallInit';
+$wgHooks['MagicWordwgVariableIDs'][] = 'MWCallHooks::onRegisterMagicWords';
+$wgHooks['ParserGetVariableValueSwitch'][] = 'MWCallHooks::onParserGetVariableValueSwitch';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'MWCallHooks::onLoadExtensionSchemaUpdates';
 
 // Register special pages
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages
@@ -101,12 +101,35 @@ $wgSpecialPages['MWCall'] = 'SpecialMWCaller';
 // See also http://www.mediawiki.org/wiki/Manual:$wgResourceModules
 // ResourceLoader modules are the de facto standard way to easily
 // load JavaScript and CSS files to the client.
-$wgResourceModules['ext.Example.welcome'] = array(
+
+$wgResourceModules['ext.Mwcall.Caller'] = array(
 	'scripts' => array(
-		'modules/ext.Example.welcome.js',
+		'modules/Arbiter.js', 'modules/config.js', 'modules/event-demo.js', 'modules/init.js', 'modules/jquery.cookie.js', 'modules/jquery.i18n.properties', 'modules/jquery.js', 'modules/jquery-ui.js', 'modules/JSComm.js', 'modules/JSCommManager.js', 'modules/JSCommUI.js', 'modules/jssip.js', 'modules/jssip-helper.js', 'modules/parseuri.js', 'modules/webrtc-check.js' ),
+	'styles' => array(
+		'modules/font-awesome.min.css', 'modules/jquery-ui.css', 'modules/skin.css', 'modules/style.css', 'modules/style-debrtc.css', 'modules/style-event-demo.css','modules/style-horizontal.css'
+	),
+	'messages' => array(
+		'example-welcome-title-loggedout',
+		'example-welcome-title-user',
+		'example-welcome-color-label',
+		'example-welcome-color-value',
+	),
+	'dependencies' => array(
+		'mediawiki.util',
+		'mediawiki.user',
+		'mediawiki.Title',
+	),
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
+);
+
+
+$wgResourceModules['ext.Mwcall.welcome'] = array(
+	'scripts' => array(
+		'modules/ext.Mwcall.welcome.js',
 	),
 	'styles' => array(
-		'modules/ext.Example.welcome.css',
+		'modules/ext.Mwcall.welcome.css',
 	),
 	'messages' => array(
 		'example-welcome-title-loggedout',
@@ -121,26 +144,26 @@ $wgResourceModules['ext.Example.welcome'] = array(
 	),
 
 	'localBasePath' => $dir,
-	'remoteExtPath' => 'examples/' . $dirbasename,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
 );
 
-$wgResourceModules['ext.Example.welcome.init'] = array(
-	'scripts' => 'modules/ext.Example.welcome.init.js',
+$wgResourceModules['ext.Mwcall.welcome.init'] = array(
+	'scripts' => 'modules/ext.Mwcall.welcome.init.js',
 	'dependencies' => array(
-		'ext.Example.welcome',
+		'ext.Mwcall.welcome',
 	),
 
 	'localBasePath' => $dir,
-	'remoteExtPath' => 'examples/' . $dirbasename,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
 );
 
-/* Configuration */
+//Configuration 
 
 
 /** Your extension configuration settings. Since they are going to be global
  * always use a "wg" prefix + your extension name + your setting key.
  * The entire variable name should use "lowerCamelCase".
- */
+ 
 
 // Enable Welcome
 // Example of a configuration setting to enable the 'Welcome' feature:
@@ -159,3 +182,4 @@ $wgExampleWelcomeColorDays = array(
 
 // Value of {{MYWORD}} constant
 $wgExampleMyWord = 'Awesome';
+*/

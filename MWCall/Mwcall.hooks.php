@@ -6,15 +6,15 @@
  * @ingroup Extensions
  */
 
-class ExampleHooks {
+class MWCallHooks {
 	/**
 	 * Add welcome module to the load queue of all pages
 	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		global $wgExampleEnableWelcome;
+		global $wgMwcallEnableWelcome;
 
-		if ( $wgExampleEnableWelcome ) {
-			$out->addModules( 'ext.Example.welcome.init' );
+		if ( $wgMwcallEnableWelcome ) {
+			$out->addModules( 'ext.Mwcall.welcome.init' );
 		}
 
 		// Always return true, indicating that parser initialization should
@@ -22,9 +22,9 @@ class ExampleHooks {
 		return true;
 	}
 
-	/**
+	/*
 	 * Expose configuration variables through mw.config in javascript.
-	 */
+	 
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		global $wgExampleEnableWelcome, $wgExampleWelcomeColorDefault, $wgExampleWelcomeColorDays;
 
@@ -34,7 +34,7 @@ class ExampleHooks {
 		}
 
 		return true;
-	}
+	}*/
 
 	/**
 	 * Register parser hooks
@@ -44,15 +44,15 @@ class ExampleHooks {
 		// Add the following to a wiki page to see how it works:
 		//  <dump>test</dump>
 		//  <dump foo="bar" baz="quux">test content</dump>
-		$parser->setHook( 'dump', 'ExampleHooks::parserTagDump' );
+		$parser->setHook( 'dump', 'MwcallHooks::parserTagDump' );
 
 		// Add the following to a wiki page to see how it works:
 		//  {{#echo: hello }}
-		$parser->setFunctionHook( 'echo', 'ExampleHooks::parserFunctionEcho' );
+		$parser->setFunctionHook( 'echo', 'MwcallHooks::parserFunctionEcho' );
 
 		// Add the following to a wiki page to see how it works:
 		//  {{#showme: hello | hi | there }}
-		$parser->setFunctionHook( 'showme', 'ExampleHooks::parserFunctionShowme' );
+		$parser->setFunctionHook( 'showme', 'MwcallHooks::parserFunctionShowme' );
 
 		return true;
 	}

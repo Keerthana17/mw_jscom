@@ -1,5 +1,5 @@
 <?php
-class ApiQueryExample extends ApiQueryBase {
+class ApiQueryMwcall extends ApiQueryBase {
 
 	/**
 	 * Constructor is optional. Only needed if we give

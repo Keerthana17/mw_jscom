@@ -122,17 +122,18 @@ class SpecialMWCaller extends SpecialPage {
 				'mw-allmessages-form-filter-all',
 				( $this->filter === 'video' )
 			) .
-			"</td>\n</tr>" .
+			"</td>\n</tr>" ;
 
 			//Xml::closeElement( 'form' ) .
 			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
-			Xml::element( 'input',
+		$form .= '<p>' . Xml::element( 'input',
 				array(
 					'type' => 'submit',
-					'value' => $this->msg( 'citethispage-change-submit' )->escaped()
+					'value' => $this->msg( 'call' )->escaped()
 				),
 				''
 			) .
+			Xml::closeElement('input').
 			Html::closeElement( 'form' ) .
 			Html::closeElement( 'fieldset' );
 			
