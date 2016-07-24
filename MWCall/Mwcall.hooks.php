@@ -6,7 +6,7 @@
  * @ingroup Extensions
  */
 
-class ExampleHooks {
+class MwcallHooks {
 	/**
 	 * Add welcome module to the load queue of all pages
 	 */
@@ -44,15 +44,15 @@ class ExampleHooks {
 		// Add the following to a wiki page to see how it works:
 		//  <dump>test</dump>
 		//  <dump foo="bar" baz="quux">test content</dump>
-		$parser->setHook( 'dump', 'ExampleHooks::parserTagDump' );
+		$parser->setHook( 'dump', 'MwcallHooks::parserTagDump' );
 
 		// Add the following to a wiki page to see how it works:
 		//  {{#echo: hello }}
-		$parser->setFunctionHook( 'echo', 'ExampleHooks::parserFunctionEcho' );
+		$parser->setFunctionHook( 'echo', 'MwcallHooks::parserFunctionEcho' );
 
 		// Add the following to a wiki page to see how it works:
 		//  {{#showme: hello | hi | there }}
-		$parser->setFunctionHook( 'showme', 'ExampleHooks::parserFunctionShowme' );
+		$parser->setFunctionHook( 'showme', 'MwcallHooks::parserFunctionShowme' );
 
 		return true;
 	}

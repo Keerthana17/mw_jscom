@@ -71,7 +71,7 @@ $dirbasename = basename( $dir );
 // MediaWiki need to know which PHP files contains your class. It has a
 // registering mecanism to append to the internal autoloader. Simply use
 // $wgAutoLoadClasses as below:
-$wgAutoloadClasses['ExampleHooks'] = $dir . '/Example.hooks.php';
+$wgAutoloadClasses['MwcallHooks'] = $dir . '/Mwcall.hooks.php';
 $wgAutoloadClasses['SpecialMWConfiger'] = $dir . '/specials/MWConfiger.php';
 $wgAutoloadClasses['SpecialMWCaller'] = $dir . '/specials/MWCaller.php';
 //$wgAutoloadClasses['']
@@ -85,12 +85,12 @@ $wgAPIListModules['example'] = 'ApiQueryExample';
 
 // Register hooks
 // See also http://www.mediawiki.org/wiki/Manual:Hooks
-$wgHooks['BeforePageDisplay'][] = 'ExampleHooks::onBeforePageDisplay';
-$wgHooks['ResourceLoaderGetConfigVars'][] = 'ExampleHooks::onResourceLoaderGetConfigVars';
-$wgHooks['ParserFirstCallInit'][] = 'ExampleHooks::onParserFirstCallInit';
-$wgHooks['MagicWordwgVariableIDs'][] = 'ExampleHooks::onRegisterMagicWords';
-$wgHooks['ParserGetVariableValueSwitch'][] = 'ExampleHooks::onParserGetVariableValueSwitch';
-$wgHooks['LoadExtensionSchemaUpdates'][] = 'ExampleHooks::onLoadExtensionSchemaUpdates';
+$wgHooks['BeforePageDisplay'][] = 'MwcallHooks::onBeforePageDisplay';
+$wgHooks['ResourceLoaderGetConfigVars'][] = 'MwcallHooks::onResourceLoaderGetConfigVars';
+$wgHooks['ParserFirstCallInit'][] = 'MwcallHooks::onParserFirstCallInit';
+$wgHooks['MagicWordwgVariableIDs'][] = 'MwcallHooks::onRegisterMagicWords';
+$wgHooks['ParserGetVariableValueSwitch'][] = 'MwcallHooks::onParserGetVariableValueSwitch';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'MwcallHooks::onLoadExtensionSchemaUpdates';
 
 // Register special pages
 // See also http://www.mediawiki.org/wiki/Manual:Special_pages

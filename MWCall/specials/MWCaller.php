@@ -34,10 +34,13 @@ class SpecialMWCaller extends SpecialPage {
 		// page output.
 		$out->addWikiMsg( 'mw-caller-intro' );
 		$out = $this->getOutput();
+		/*$out->addWikiMsg( 'mw-caller-intro' );
+		$out = $this->getOutput();*/
+
     	//$out->addWikimsg( 'example-hello_world' );
     	//$out->addWikimsg( 'example-hello_world', $wgRequest->getText( 'name' ));
     	//$isbn = $this->getRequest()->getText( 'isbn' ) ;
-    	$this->getOutput()->addHTML( $this->Destination() );
+    	$this->getOutput()->addHTML( $this->Callerfn() );
     	//$this->getOutput()->addHTML( $this->Registration() );
     	//If videoCall then,
     	//$this->getOutput()->addHTML( $this->VideoCallOptions() );
@@ -47,7 +50,7 @@ class SpecialMWCaller extends SpecialPage {
 		return 'other';
 	}
 
-		private function Destination() {
+		private function Callerfn() {
 
 			global $d_name, $d_pass, $sip_uri;
 
@@ -122,17 +125,18 @@ class SpecialMWCaller extends SpecialPage {
 				'mw-allmessages-form-filter-all',
 				( $this->filter === 'video' )
 			) .
-			"</td>\n</tr>" .
+			"</td>\n</tr>" ;
 
 			//Xml::closeElement( 'form' ) .
 			//$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
-			Xml::element( 'input',
+		$form .= '<p>' . Xml::element( 'input',
 				array(
 					'type' => 'submit',
-					'value' => $this->msg( 'citethispage-change-submit' )->escaped()
+					'value' => $this->msg( 'call' )->escaped()
 				),
 				''
 			) .
+			Xml::closeElement('input').
 			Html::closeElement( 'form' ) .
 			Html::closeElement( 'fieldset' );
 			
@@ -143,7 +147,6 @@ class SpecialMWCaller extends SpecialPage {
 
 		
 	}
-
 	/*private function Registration() {
 
 		$form = Html::openElement( 'fieldset' ) . "\n";
