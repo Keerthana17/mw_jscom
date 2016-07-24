@@ -101,12 +101,33 @@ $wgSpecialPages['MWCall'] = 'SpecialMWCaller';
 // See also http://www.mediawiki.org/wiki/Manual:$wgResourceModules
 // ResourceLoader modules are the de facto standard way to easily
 // load JavaScript and CSS files to the client.
-$wgResourceModules['ext.Example.welcome'] = array(
+$wgResourceModules['ext.Mwcall.Caller'] = array(
 	'scripts' => array(
-		'modules/ext.Example.welcome.js',
+		'modules/Arbiter.js', 'modules/config.js', 'modules/ext.Mwcall.Caller.js', 'modules/event-demo.js', 'modules/init.js', 'modules/jquery.cookie.js', 'modules/jquery.i18n.properties', 'modules/jquery.js', 'modules/jquery-ui.js', 'modules/JSComm.js', 'modules/JSCommManager.js', 'modules/JSCommUI.js', 'modules/jssip.js', 'modules/jssip-helper.js', 'modules/parseuri.js', 'modules/webrtc-check.js' ),
+	'styles' => array(
+		'modules/font-awesome.min.css', 'modules/jquery-ui.css', 'modules/skin.css', 'modules/style.css', 'modules/style-debrtc.css', 'modules/style-event-demo.css','modules/style-horizontal.css'
+	),
+	'messages' => array(
+		'example-welcome-title-loggedout',
+		'example-welcome-title-user',
+		'example-welcome-color-label',
+		'example-welcome-color-value',
+	),
+	'dependencies' => array(
+		'mediawiki.util',
+		'mediawiki.user',
+		'mediawiki.Title',
+	),
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
+);
+
+$wgResourceModules['ext.Mwcall.welcome'] = array(
+	'scripts' => array(
+		'modules/ext.Mwcall.welcome.js',
 	),
 	'styles' => array(
-		'modules/ext.Example.welcome.css',
+		'modules/ext.Mwcall.welcome.css',
 	),
 	'messages' => array(
 		'example-welcome-title-loggedout',
@@ -121,17 +142,17 @@ $wgResourceModules['ext.Example.welcome'] = array(
 	),
 
 	'localBasePath' => $dir,
-	'remoteExtPath' => 'examples/' . $dirbasename,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
 );
 
-$wgResourceModules['ext.Example.welcome.init'] = array(
-	'scripts' => 'modules/ext.Example.welcome.init.js',
+$wgResourceModules['ext.Mwcall.welcome.init'] = array(
+	'scripts' => 'modules/ext.Mwcall.welcome.init.js',
 	'dependencies' => array(
-		'ext.Example.welcome',
+		'ext.Mwcall.welcome',
 	),
 
 	'localBasePath' => $dir,
-	'remoteExtPath' => 'examples/' . $dirbasename,
+	'remoteExtPath' => 'mwcall/' . $dirbasename,
 );
 
 /* Configuration */
