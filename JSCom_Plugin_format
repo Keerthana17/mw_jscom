@@ -1,0 +1,76 @@
+JSCom Plugin basic format :
+
+Function Network Control
+
+	Input: {form}
+		Name
+		Login SIP URI
+		Password
+
+Function Call :
+
+	Call Info :
+
+		Input a contact {form}
+        Dialling pad {Selection buttons}
+        Input call type : Audio/Video? {selection button}
+
+	Call state : {Automatic selection}
+
+		Call Dialling
+		Call Incoming
+		Call Accepted/Answering
+		Call Connected
+
+	Session Control : {Selection button}
+
+		Cancel
+		Reject
+		Answer
+		Answer with video
+		//Hold
+		Hangup
+		Active 
+
+Function chat :
+
+	Input Destination {form}
+
+	Chat error : No contact specified
+
+Function error :
+
+	Error Display : {Automatic Selection}
+
+		Enable Javascript error
+		Enable WebRTC - Mozilla error
+		Google chrome update error
+		Error in JsCommunicator configuration
+		Error in user agent initialization
+		SIP Registration failure
+		Hardware error : microphone/webcam
+
+Function WebSocket :
+
+	Websocket : connected/not {selection button}
+
+	SIP registration : 
+
+		registered/not {selection button}
+		deregister/not {selection button}
+
+Function VideoCall :
+
+	Remote view {selection button}
+	Self view/hide {selection button}
+
+
+
+
+
+
+        
+        
+
+
+
